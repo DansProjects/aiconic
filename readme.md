@@ -7,3 +7,18 @@
 Group members include: Dan Mo, Ajay Simha, Raj Ray, Mahesh Hariharasubramanian, and Shreyas Sudheendra Rao
 
 Spring 2018 - Applied AI, Prof. Richard Mammone
+
+## Installation Instructions
+
+Flask / Classifier
+```
+cd aiconic-flask
+pip install -r requirements.txt
+```
+
+React
+```
+cd aiconic-react
+npm install
+change api url in /src/api/classify.js
+```
