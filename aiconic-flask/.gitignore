@@ -102,3 +102,4 @@ public
 
 #uploaded files
 to_classify/*
+!to_classify/uploaded_goes_here.txt
