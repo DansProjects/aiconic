@@ -8,7 +8,7 @@ class App extends React.Component {
         super()
         this.state = {
             files: [] ,
-            results: ['test'],
+            results: [],
             classification: false,
             uploading: false
         }

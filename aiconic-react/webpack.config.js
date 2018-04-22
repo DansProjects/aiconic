@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const HOST = process.env.HOST || "http://danielmo.com";
+const HOST = process.env.HOST || "0.0.0.0";
 const PORT = process.env.PORT || "7777";
 
 
@@ -51,7 +51,8 @@ module.exports = {
     // serve index.html in place of 404 responses to allow HTML5 history
     historyApiFallback: true,
     port: PORT,
-    host: HOST
+    host: HOST,
+    disableHostCheck: true
   },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
