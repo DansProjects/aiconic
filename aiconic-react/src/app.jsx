@@ -10,7 +10,8 @@ class App extends React.Component {
             files: [] ,
             results: [],
             classification: false,
-            uploading: false
+            uploading: false,
+            confidence: 0
         }
     }
 
@@ -20,10 +21,10 @@ class App extends React.Component {
             let uploadResponse = await uploadImageAsync(files);
             if(parseFloat(uploadResponse.result.diseased) > parseFloat(uploadResponse.result.notdiseased)){
                 console.log("RIP");
-                this.setState({ results: uploadResponse, classification: true });
+                this.setState({ results: uploadResponse, classification: true, confidence: parseFloat(uploadResponse.result.diseased) });
             }else{
                 console.log("SAFE");
-                this.setState({ results: uploadResponse, classification: false });
+                this.setState({ results: uploadResponse, classification: false, confidence: parseFloat(uploadResponse.result.notdiseased) });
             }
         }catch (e) {
             console.log(e);
@@ -34,16 +35,12 @@ class App extends React.Component {
 
     }
 
-    parseResults(res){
-        return true;
-    }
-
     render() {
         console.log(this.state);
 
         let status = "";
         let statusText = "";
-        console.log(this.state.uploading);
+        let confidence = this.state.confidence;
         if(this.state.uploading === true){
             status = <i className="fas fa-cog fa-spin fa-8x"/>;
             statusText = <p>Uploading...</p>;
@@ -98,6 +95,7 @@ class App extends React.Component {
                 <Dropzone id="download" className="download-section content-section text-center" onDrop={this.onDrop.bind(this)}>
                     <div className="container">
                         {statusText}
+                        {confidence > 0 ? confidence : ""}
                         {status}
 
                         <aside className="mt-5">
