@@ -1,10 +1,18 @@
 # Import sys and tensorflow as tf
 import tensorflow as tf, sys
+import gc
+gc.collect()
 
 
 class Classify:
 
-    def diabetic_retin(image_path):
+    def limit_mem(self, K):
+        K.get_session().close()
+        cfg = K.tf.ConfigProto()
+        cfg.gpu_options.allow_growth = True
+        K.set_session(K.tf.Session(config=cfg))
+
+    def diabetic_retin(self, image_path):
         # Read in the image_data
         image_data = tf.gfile.FastGFile(image_path, 'rb').read()
 
@@ -37,6 +45,6 @@ class Classify:
                     diseased =  predictions[0][node_id]
                 elif label_lines[node_id] == "notdiseased":
                     notdiseased = predictions[0][node_id]
-            sess.close()
+            gc.collect()
             f.close()
             return {"diseased": str(diseased), "notdiseased": str(notdiseased)}

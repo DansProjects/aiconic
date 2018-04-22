@@ -23,11 +23,12 @@ def classify():
         file = request.files['classify']
         file_path = os.path.join("./to_classify/", secure_filename(file.filename))
         file.save(file_path)
-        test = Classify.diabetic_retin(file_path)
+        classifier = Classify()
+        test = classifier.diabetic_retin(file_path)
         file.close()
     response = jsonify({'result': test})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 if __name__ == '__main__':
-    app.run(host= '0.0.0.0')
+    app.run(host= '0.0.0.0', debug=True)
