@@ -99,3 +99,6 @@ venv.bak/
 # Ignore build files
 public
 .idea
+
+#uploaded files
+to_classify/*
