@@ -24,10 +24,8 @@ def classify():
         file_path = os.path.join("./to_classify/", secure_filename(file.filename))
         file.save(file_path)
         test = Classify.diabetic_retin(file_path)
-        #pprint(vars(request))
-        #print(request.files, file=sys.stderr)
+        file.close()
     response = jsonify({'result': test})
-    print(test)
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
