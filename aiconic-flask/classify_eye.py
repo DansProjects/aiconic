@@ -38,4 +38,5 @@ class Classify:
                 elif label_lines[node_id] == "notdiseased":
                     notdiseased = predictions[0][node_id]
             sess.close()
+            f.close()
             return {"diseased": str(diseased), "notdiseased": str(notdiseased)}
