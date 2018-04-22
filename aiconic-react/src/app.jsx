@@ -95,7 +95,7 @@ class App extends React.Component {
                 <Dropzone id="download" className="download-section content-section text-center" onDrop={this.onDrop.bind(this)}>
                     <div className="container">
                         {statusText}
-                        {confidence > 0 ? confidence : ""}
+                        <p>{confidence > 0 ? Math.round(confidence* 100) +"%" : ""}</p>
                         {status}
 
                         <aside className="mt-5">
